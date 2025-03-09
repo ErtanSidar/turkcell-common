@@ -13,7 +13,7 @@
 
     <groupId>io.github.ertansidar</groupId>
     <artifactId>turkcell-common</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <name>common</name>
@@ -37,8 +37,8 @@
     </licenses>
 
     <scm>
-        <url>https://github.com/ErtanSidar/turkcell-crm</url>
-        <connection>scm:git:git://github.com/ErtanSidar/turkcell-crm</connection>
+        <url>https://github.com/ErtanSidar/turkcell-common</url>
+        <connection>scm:git:git://github.com/ErtanSidar/turkcell-common</connection>
     </scm>
 
     <properties>
@@ -56,6 +56,19 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>net.sizovs</groupId>
+            <artifactId>pipelinr</artifactId>
+            <version>0.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
     </dependencies>
 
