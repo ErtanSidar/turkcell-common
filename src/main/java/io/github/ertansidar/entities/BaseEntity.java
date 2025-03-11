@@ -25,8 +25,10 @@ public abstract class BaseEntity<T> {
 
     @PrePersist
     protected void prePersist() {
+        if (id == null) {
+            id = generateId();
+        }
         createdDate = LocalDateTime.now();
-
     }
 
     @PreUpdate
@@ -37,6 +39,10 @@ public abstract class BaseEntity<T> {
     @PreRemove
     protected void preRemove() {
         deletedDate = LocalDateTime.now();
+    }
+
+    protected T generateId() {
+        throw new UnsupportedOperationException("ID generation must be implemented in subclasses.");
     }
 
 }
