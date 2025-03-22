@@ -3,46 +3,47 @@ package io.github.ertansidar.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public abstract class BaseEntity<T> {
 
     @Id
     private T id;
 
-    @Column(name = "created_date", nullable = false)
-    private LocalDateTime createdDate;
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
 
-    @Column(name = "updated_date")
-    private LocalDateTime updatedDate;
+    @CreatedBy
+    @Column(updatable = false)
+    private String createdBy;
 
-    @Column(name = "deleted_date")
-    private LocalDateTime deletedDate;
+    @LastModifiedDate
+    @Column(insertable = false)
+    private LocalDateTime updatedAt;
 
-    @PrePersist
-    protected void prePersist() {
-        if (id == null) {
-            id = generateId();
-        }
-        createdDate = LocalDateTime.now();
+    @LastModifiedBy
+    @Column(insertable = false)
+    private String updatedBy;
+
+    private LocalDateTime deletedAt;
+
+    private String deletedBy;
+
+    protected BaseEntity() {
+        this.id = generateId();
     }
 
-    @PreUpdate
-    protected void preUpdate() {
-        updatedDate = LocalDateTime.now();
-    }
-
-    @PreRemove
-    protected void preRemove() {
-        deletedDate = LocalDateTime.now();
-    }
-
-    protected T generateId() {
-        throw new UnsupportedOperationException("ID generation must be implemented in subclasses.");
-    }
+    protected abstract T generateId();
 
 }
