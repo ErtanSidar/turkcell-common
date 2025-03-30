@@ -13,7 +13,7 @@
 
     <groupId>io.github.ertansidar</groupId>
     <artifactId>turkcell-common</artifactId>
-    <version>1.4.1</version>
+    <version>1.5.1</version>
     <packaging>jar</packaging>
 
     <name>common</name>
@@ -51,6 +51,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
