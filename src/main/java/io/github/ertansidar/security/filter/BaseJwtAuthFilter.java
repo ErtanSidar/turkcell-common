@@ -32,11 +32,10 @@ public class BaseJwtAuthFilter extends OncePerRequestFilter {
             String jwt = jwtHeader.substring(7);
 
             String username = jwtService.extractUsername(jwt);
-            System.out.println("username: " + username);
             List<String> roles = jwtService.extractRoles(jwt);
 
             if (roles == null || roles.size() <= 0) {
-                roles = Arrays.asList("USER");
+                roles = Arrays.asList("ADMIN");
             }
 
             List<SimpleGrantedAuthority> authorities = roles.stream()
